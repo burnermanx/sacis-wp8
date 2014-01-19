@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SACIS.Resources;
+using SACIS.SacisService;
 
 namespace SACIS
 {
@@ -26,10 +27,31 @@ namespace SACIS
         {
 
         }
+        
+        private static string geraHash(string texto)
+        {
+            return;
+        }
+        
+        //Metodo utilizado pelos botões de entrar na tela e no appbar. Apenas pra não repetir código.
+        private void Entrar()
+        {
+            SacisService.Service1SoapClient WService = new SacisService.Service1SoapClient();
+            string usuario = Login.Text;
+            string senha = Password.Password;
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
+                MessageBox.Show("Favor entrar com o nome de usuário e senha");
+            else
+            {
+                string hash = geraHash(senha);
+                WService.consultaUsuarioAsync(usuario, senha);
+                WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
+            }
+        }
 
         private void Botao_Entrar(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
+            Entrar();
         }
 
         private void AppBar_Entrar(object sender, EventArgs e)
@@ -78,20 +100,31 @@ namespace SACIS
             Password.Opacity = 100;
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        //Handler que cuida do evento consultaUsuario assim que ele termina a consulta. Ele vai permitir fazer o login ou
+        //não permitir a entrada e dar a mensagem de erro correspondente.
+        private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
+        {
+            string status = e.Result.ToString();
+            if (status == "0")
+                NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
+            else if (status == "1")
+            {
+                MessageBox.Show("Você precisa alterar a senha para continuar");
+                NavigationService.Navigate(new Uri("/AlteraSenha.xaml", UriKind.Relative));
+            }
+            else if (status == "2")
+            {
+                MessageBox.Show("Chave expirada. Favor renovar a chave");
+            }
+            else if (status == "3")
+            {
+                MessageBox.Show("Acesso negado. Entrar em contato com o administrador.");
+            }
+            else
+            {
+                MessageBox.Show("Erro desconhecido ou nada aconteceu"); //Apenas para debug, mudar a mensagem depois
+            }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        }
     }
 }

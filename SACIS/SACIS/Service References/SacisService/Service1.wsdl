@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://sacis.com.br" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://sacis.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://sacis.com.br">
+      <s:element name="teste">
+        <s:complexType />
+      </s:element>
+      <s:element name="testeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="testeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaLoginUsuarioManutencao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaLoginUsuarioManutencaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verificaLoginUsuarioManutencaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verificaUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resetaSenha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resetaSenhaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resetaSenhaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraNome">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraNomeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="alteraNomeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraPermissao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="permissao" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraPermissaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="alteraPermissaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraCertificado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="certificado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validade" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraCertificadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="alteraCertificadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluiUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluiUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="excluiUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cadastraUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmluser" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cadastraUsuarioResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="consultaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="consultaUsuarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraSenha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraSenhaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="alteraSenhaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaContatos">
+        <s:complexType />
+      </s:element>
+      <s:element name="retornaContatosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="retornaContatosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cadastraContatoPessoal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cadastraContatoPessoalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cadastraContatoPessoalResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaContatoPessoal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaContatoPessoalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="retornaContatoPessoalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removeContatoPessoal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removeContatoPessoalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="removeContatoPessoalResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="enviaMensagem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="enviaMensagemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="enviaMensagemResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaCabecalho">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaCabecalhoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="retornaCabecalhoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="apagaMensagem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="apagaMensagemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="apagaMensagemResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscaMensagem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscaMensagemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscaMensagemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscaAnexo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscaAnexoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscaAnexoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="abreAnexo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nomeArq" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="abreAnexoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="abreAnexoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaChavePublica">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="destinatario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retornaChavePublicaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="retornaChavePublicaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaMensagemCriptografada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaMensagemCriptografadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verificaMensagemCriptografadaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaValidadeCertificado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="destinatario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verificaValidadeCertificadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verificaValidadeCertificadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="testeSoapIn">
+    <wsdl:part name="parameters" element="tns:teste" />
+  </wsdl:message>
+  <wsdl:message name="testeSoapOut">
+    <wsdl:part name="parameters" element="tns:testeResponse" />
+  </wsdl:message>
+  <wsdl:message name="verificaLoginUsuarioManutencaoSoapIn">
+    <wsdl:part name="parameters" element="tns:verificaLoginUsuarioManutencao" />
+  </wsdl:message>
+  <wsdl:message name="verificaLoginUsuarioManutencaoSoapOut">
+    <wsdl:part name="parameters" element="tns:verificaLoginUsuarioManutencaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="verificaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:verificaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="verificaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:verificaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="resetaSenhaSoapIn">
+    <wsdl:part name="parameters" element="tns:resetaSenha" />
+  </wsdl:message>
+  <wsdl:message name="resetaSenhaSoapOut">
+    <wsdl:part name="parameters" element="tns:resetaSenhaResponse" />
+  </wsdl:message>
+  <wsdl:message name="alteraNomeSoapIn">
+    <wsdl:part name="parameters" element="tns:alteraNome" />
+  </wsdl:message>
+  <wsdl:message name="alteraNomeSoapOut">
+    <wsdl:part name="parameters" element="tns:alteraNomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="alteraPermissaoSoapIn">
+    <wsdl:part name="parameters" element="tns:alteraPermissao" />
+  </wsdl:message>
+  <wsdl:message name="alteraPermissaoSoapOut">
+    <wsdl:part name="parameters" element="tns:alteraPermissaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="alteraCertificadoSoapIn">
+    <wsdl:part name="parameters" element="tns:alteraCertificado" />
+  </wsdl:message>
+  <wsdl:message name="alteraCertificadoSoapOut">
+    <wsdl:part name="parameters" element="tns:alteraCertificadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="excluiUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:excluiUsuario" />
+  </wsdl:message>
+  <wsdl:message name="excluiUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:excluiUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="cadastraUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:cadastraUsuario" />
+  </wsdl:message>
+  <wsdl:message name="cadastraUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:cadastraUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:consultaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="consultaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:consultaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="alteraSenhaSoapIn">
+    <wsdl:part name="parameters" element="tns:alteraSenha" />
+  </wsdl:message>
+  <wsdl:message name="alteraSenhaSoapOut">
+    <wsdl:part name="parameters" element="tns:alteraSenhaResponse" />
+  </wsdl:message>
+  <wsdl:message name="retornaContatosSoapIn">
+    <wsdl:part name="parameters" element="tns:retornaContatos" />
+  </wsdl:message>
+  <wsdl:message name="retornaContatosSoapOut">
+    <wsdl:part name="parameters" element="tns:retornaContatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="cadastraContatoPessoalSoapIn">
+    <wsdl:part name="parameters" element="tns:cadastraContatoPessoal" />
+  </wsdl:message>
+  <wsdl:message name="cadastraContatoPessoalSoapOut">
+    <wsdl:part name="parameters" element="tns:cadastraContatoPessoalResponse" />
+  </wsdl:message>
+  <wsdl:message name="retornaContatoPessoalSoapIn">
+    <wsdl:part name="parameters" element="tns:retornaContatoPessoal" />
+  </wsdl:message>
+  <wsdl:message name="retornaContatoPessoalSoapOut">
+    <wsdl:part name="parameters" element="tns:retornaContatoPessoalResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeContatoPessoalSoapIn">
+    <wsdl:part name="parameters" element="tns:removeContatoPessoal" />
+  </wsdl:message>
+  <wsdl:message name="removeContatoPessoalSoapOut">
+    <wsdl:part name="parameters" element="tns:removeContatoPessoalResponse" />
+  </wsdl:message>
+  <wsdl:message name="enviaMensagemSoapIn">
+    <wsdl:part name="parameters" element="tns:enviaMensagem" />
+  </wsdl:message>
+  <wsdl:message name="enviaMensagemSoapOut">
+    <wsdl:part name="parameters" element="tns:enviaMensagemResponse" />
+  </wsdl:message>
+  <wsdl:message name="retornaCabecalhoSoapIn">
+    <wsdl:part name="parameters" element="tns:retornaCabecalho" />
+  </wsdl:message>
+  <wsdl:message name="retornaCabecalhoSoapOut">
+    <wsdl:part name="parameters" element="tns:retornaCabecalhoResponse" />
+  </wsdl:message>
+  <wsdl:message name="apagaMensagemSoapIn">
+    <wsdl:part name="parameters" element="tns:apagaMensagem" />
+  </wsdl:message>
+  <wsdl:message name="apagaMensagemSoapOut">
+    <wsdl:part name="parameters" element="tns:apagaMensagemResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscaMensagemSoapIn">
+    <wsdl:part name="parameters" element="tns:buscaMensagem" />
+  </wsdl:message>
+  <wsdl:message name="buscaMensagemSoapOut">
+    <wsdl:part name="parameters" element="tns:buscaMensagemResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscaAnexoSoapIn">
+    <wsdl:part name="parameters" element="tns:buscaAnexo" />
+  </wsdl:message>
+  <wsdl:message name="buscaAnexoSoapOut">
+    <wsdl:part name="parameters" element="tns:buscaAnexoResponse" />
+  </wsdl:message>
+  <wsdl:message name="abreAnexoSoapIn">
+    <wsdl:part name="parameters" element="tns:abreAnexo" />
+  </wsdl:message>
+  <wsdl:message name="abreAnexoSoapOut">
+    <wsdl:part name="parameters" element="tns:abreAnexoResponse" />
+  </wsdl:message>
+  <wsdl:message name="retornaChavePublicaSoapIn">
+    <wsdl:part name="parameters" element="tns:retornaChavePublica" />
+  </wsdl:message>
+  <wsdl:message name="retornaChavePublicaSoapOut">
+    <wsdl:part name="parameters" element="tns:retornaChavePublicaResponse" />
+  </wsdl:message>
+  <wsdl:message name="verificaMensagemCriptografadaSoapIn">
+    <wsdl:part name="parameters" element="tns:verificaMensagemCriptografada" />
+  </wsdl:message>
+  <wsdl:message name="verificaMensagemCriptografadaSoapOut">
+    <wsdl:part name="parameters" element="tns:verificaMensagemCriptografadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="verificaValidadeCertificadoSoapIn">
+    <wsdl:part name="parameters" element="tns:verificaValidadeCertificado" />
+  </wsdl:message>
+  <wsdl:message name="verificaValidadeCertificadoSoapOut">
+    <wsdl:part name="parameters" element="tns:verificaValidadeCertificadoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="teste">
+      <wsdl:input message="tns:testeSoapIn" />
+      <wsdl:output message="tns:testeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verificaLoginUsuarioManutencao">
+      <wsdl:input message="tns:verificaLoginUsuarioManutencaoSoapIn" />
+      <wsdl:output message="tns:verificaLoginUsuarioManutencaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verificaUsuario">
+      <wsdl:input message="tns:verificaUsuarioSoapIn" />
+      <wsdl:output message="tns:verificaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resetaSenha">
+      <wsdl:input message="tns:resetaSenhaSoapIn" />
+      <wsdl:output message="tns:resetaSenhaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="alteraNome">
+      <wsdl:input message="tns:alteraNomeSoapIn" />
+      <wsdl:output message="tns:alteraNomeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="alteraPermissao">
+      <wsdl:input message="tns:alteraPermissaoSoapIn" />
+      <wsdl:output message="tns:alteraPermissaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="alteraCertificado">
+      <wsdl:input message="tns:alteraCertificadoSoapIn" />
+      <wsdl:output message="tns:alteraCertificadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="excluiUsuario">
+      <wsdl:input message="tns:excluiUsuarioSoapIn" />
+      <wsdl:output message="tns:excluiUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cadastraUsuario">
+      <wsdl:input message="tns:cadastraUsuarioSoapIn" />
+      <wsdl:output message="tns:cadastraUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultaUsuario">
+      <wsdl:input message="tns:consultaUsuarioSoapIn" />
+      <wsdl:output message="tns:consultaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <wsdl:input message="tns:alteraSenhaSoapIn" />
+      <wsdl:output message="tns:alteraSenhaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatos">
+      <wsdl:input message="tns:retornaContatosSoapIn" />
+      <wsdl:output message="tns:retornaContatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cadastraContatoPessoal">
+      <wsdl:input message="tns:cadastraContatoPessoalSoapIn" />
+      <wsdl:output message="tns:cadastraContatoPessoalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatoPessoal">
+      <wsdl:input message="tns:retornaContatoPessoalSoapIn" />
+      <wsdl:output message="tns:retornaContatoPessoalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removeContatoPessoal">
+      <wsdl:input message="tns:removeContatoPessoalSoapIn" />
+      <wsdl:output message="tns:removeContatoPessoalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="enviaMensagem">
+      <wsdl:input message="tns:enviaMensagemSoapIn" />
+      <wsdl:output message="tns:enviaMensagemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retornaCabecalho">
+      <wsdl:input message="tns:retornaCabecalhoSoapIn" />
+      <wsdl:output message="tns:retornaCabecalhoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="apagaMensagem">
+      <wsdl:input message="tns:apagaMensagemSoapIn" />
+      <wsdl:output message="tns:apagaMensagemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscaMensagem">
+      <wsdl:input message="tns:buscaMensagemSoapIn" />
+      <wsdl:output message="tns:buscaMensagemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscaAnexo">
+      <wsdl:input message="tns:buscaAnexoSoapIn" />
+      <wsdl:output message="tns:buscaAnexoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="abreAnexo">
+      <wsdl:input message="tns:abreAnexoSoapIn" />
+      <wsdl:output message="tns:abreAnexoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retornaChavePublica">
+      <wsdl:input message="tns:retornaChavePublicaSoapIn" />
+      <wsdl:output message="tns:retornaChavePublicaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verificaMensagemCriptografada">
+      <wsdl:input message="tns:verificaMensagemCriptografadaSoapIn" />
+      <wsdl:output message="tns:verificaMensagemCriptografadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verificaValidadeCertificado">
+      <wsdl:input message="tns:verificaValidadeCertificadoSoapIn" />
+      <wsdl:output message="tns:verificaValidadeCertificadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="teste">
+      <soap:operation soapAction="http://sacis.com.br/teste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaLoginUsuarioManutencao">
+      <soap:operation soapAction="http://sacis.com.br/verificaLoginUsuarioManutencao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaUsuario">
+      <soap:operation soapAction="http://sacis.com.br/verificaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetaSenha">
+      <soap:operation soapAction="http://sacis.com.br/resetaSenha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraNome">
+      <soap:operation soapAction="http://sacis.com.br/alteraNome" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraPermissao">
+      <soap:operation soapAction="http://sacis.com.br/alteraPermissao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraCertificado">
+      <soap:operation soapAction="http://sacis.com.br/alteraCertificado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluiUsuario">
+      <soap:operation soapAction="http://sacis.com.br/excluiUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraUsuario">
+      <soap:operation soapAction="http://sacis.com.br/cadastraUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaUsuario">
+      <soap:operation soapAction="http://sacis.com.br/consultaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <soap:operation soapAction="http://sacis.com.br/alteraSenha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatos">
+      <soap:operation soapAction="http://sacis.com.br/retornaContatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraContatoPessoal">
+      <soap:operation soapAction="http://sacis.com.br/cadastraContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatoPessoal">
+      <soap:operation soapAction="http://sacis.com.br/retornaContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeContatoPessoal">
+      <soap:operation soapAction="http://sacis.com.br/removeContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enviaMensagem">
+      <soap:operation soapAction="http://sacis.com.br/enviaMensagem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaCabecalho">
+      <soap:operation soapAction="http://sacis.com.br/retornaCabecalho" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="apagaMensagem">
+      <soap:operation soapAction="http://sacis.com.br/apagaMensagem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscaMensagem">
+      <soap:operation soapAction="http://sacis.com.br/buscaMensagem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscaAnexo">
+      <soap:operation soapAction="http://sacis.com.br/buscaAnexo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abreAnexo">
+      <soap:operation soapAction="http://sacis.com.br/abreAnexo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaChavePublica">
+      <soap:operation soapAction="http://sacis.com.br/retornaChavePublica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaMensagemCriptografada">
+      <soap:operation soapAction="http://sacis.com.br/verificaMensagemCriptografada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaValidadeCertificado">
+      <soap:operation soapAction="http://sacis.com.br/verificaValidadeCertificado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="teste">
+      <soap12:operation soapAction="http://sacis.com.br/teste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaLoginUsuarioManutencao">
+      <soap12:operation soapAction="http://sacis.com.br/verificaLoginUsuarioManutencao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaUsuario">
+      <soap12:operation soapAction="http://sacis.com.br/verificaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetaSenha">
+      <soap12:operation soapAction="http://sacis.com.br/resetaSenha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraNome">
+      <soap12:operation soapAction="http://sacis.com.br/alteraNome" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraPermissao">
+      <soap12:operation soapAction="http://sacis.com.br/alteraPermissao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraCertificado">
+      <soap12:operation soapAction="http://sacis.com.br/alteraCertificado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluiUsuario">
+      <soap12:operation soapAction="http://sacis.com.br/excluiUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraUsuario">
+      <soap12:operation soapAction="http://sacis.com.br/cadastraUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaUsuario">
+      <soap12:operation soapAction="http://sacis.com.br/consultaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <soap12:operation soapAction="http://sacis.com.br/alteraSenha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatos">
+      <soap12:operation soapAction="http://sacis.com.br/retornaContatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraContatoPessoal">
+      <soap12:operation soapAction="http://sacis.com.br/cadastraContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaContatoPessoal">
+      <soap12:operation soapAction="http://sacis.com.br/retornaContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeContatoPessoal">
+      <soap12:operation soapAction="http://sacis.com.br/removeContatoPessoal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enviaMensagem">
+      <soap12:operation soapAction="http://sacis.com.br/enviaMensagem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaCabecalho">
+      <soap12:operation soapAction="http://sacis.com.br/retornaCabecalho" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="apagaMensagem">
+      <soap12:operation soapAction="http://sacis.com.br/apagaMensagem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscaMensagem">
+      <soap12:operation soapAction="http://sacis.com.br/buscaMensagem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscaAnexo">
+      <soap12:operation soapAction="http://sacis.com.br/buscaAnexo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abreAnexo">
+      <soap12:operation soapAction="http://sacis.com.br/abreAnexo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retornaChavePublica">
+      <soap12:operation soapAction="http://sacis.com.br/retornaChavePublica" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaMensagemCriptografada">
+      <soap12:operation soapAction="http://sacis.com.br/verificaMensagemCriptografada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificaValidadeCertificado">
+      <soap12:operation soapAction="http://sacis.com.br/verificaValidadeCertificado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://sacis.com.br/ws/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://sacis.com.br/ws/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

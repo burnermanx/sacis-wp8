@@ -96,11 +96,25 @@
     <Compile Include="ArmzArquivos.xaml.cs">
       <DependentUpon>ArmzArquivos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\CryptoConfig.cs" />
+    <Compile Include="Classes\ICryptoTransform.cs.cs" />
+    <Compile Include="Classes\HashAlgorithm.cs" />
+    <Compile Include="Classes\SHA512.cs" />
+    <Compile Include="Classes\SHA512Managed.cs" />
+    <Compile Include="hash.cs" />
     <Compile Include="Contatos.xaml.cs">
       <DependentUpon>Contatos.xaml</DependentUpon>
     </Compile>
     <Compile Include="NovaMensagem.xaml.cs">
       <DependentUpon>NovaMensagem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlteraSenha.xaml.cs">
+      <DependentUpon>AlteraSenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SacisService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Sobre.xaml.cs">
       <DependentUpon>Sobre.xaml</DependentUpon>
@@ -139,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AlteraSenha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sobre.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +179,8 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\SacisService\Service1.wsdl" />
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -224,6 +244,12 @@
     <Content Include="Images\transport.play.png" />
     <Content Include="Images\transport.rew.png" />
     <Content Include="Images\upload.png" />
+    <None Include="Service References\SacisService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SacisService\configuration.svcinfo" />
+    <None Include="Service References\SacisService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -233,6 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SacisService\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
