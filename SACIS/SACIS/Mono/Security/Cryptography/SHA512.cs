@@ -1,11 +1,13 @@
 ﻿//
-// System.Security.Cryptography ICryptoTransform interface
+// System.Security.Cryptography SHA512 Class implementation
 //
 // Authors:
 //   Matthew S. Ford (Matthew.S.Ford@Rose-Hulman.Edu)
+//   Sebastien Pouliot <sebastien@ximian.com>
 //
 // Copyright 2001 by Matthew S. Ford.
-// Copyright (C) 2004-2005 Novell, Inc (http://www.novell.com)
+// Portions (C) 2002 Motus Technologies Inc. (http://www.motus.com)
+// Copyright (C) 2004-2006 Novell, Inc (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -33,31 +35,26 @@ namespace Mono.Security.Cryptography
 {
 
     [ComVisible(true)]
-    public interface ICryptoTransform : IDisposable
+    public abstract class SHA512 : HashAlgorithm
     {
 
-        bool CanReuseTransform
+        protected SHA512()
         {
-            get;
+            HashSizeValue = 512;
         }
 
-        bool CanTransformMultipleBlocks
+        public static new SHA512 Create()
         {
-            get;
+#if FULL_AOT_RUNTIME
+			return new Mono.Security.Cryptography.SHA512Managed ();
+#else
+            return Create("Mono.Security.Cryptography.SHA512");
+#endif
         }
 
-        int InputBlockSize
+        public static new SHA512 Create(string hashName)
         {
-            get;
+            return (SHA512)CryptoConfig.CreateFromName(hashName);
         }
-
-        int OutputBlockSize
-        {
-            get;
-        }
-
-        int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset);
-
-        byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount);
     }
 }

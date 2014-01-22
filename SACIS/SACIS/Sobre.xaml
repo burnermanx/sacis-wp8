@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="SACIS.Images.Page1"
+    x:Class="SACIS.Sobre"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -28,6 +28,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBox x:Name="Texto" HorizontalAlignment="Left" Height="165" Margin="0,71,0,0" TextWrapping="Wrap" Text="Teste" VerticalAlignment="Top" Width="456"/>
+            <TextBox x:Name="TextoHash" HorizontalAlignment="Left" Height="179" Margin="0,284,0,0" TextWrapping="Wrap" Text="Cifra" VerticalAlignment="Top" Width="456"/>
 
         </Grid>
     </Grid>

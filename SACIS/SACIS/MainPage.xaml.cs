@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SACIS.Resources;
 using SACIS.SacisService;
+using SACIS.Classes;
 
 namespace SACIS
 {
@@ -28,11 +29,6 @@ namespace SACIS
 
         }
         
-        private static string geraHash(string texto)
-        {
-            return;
-        }
-        
         //Metodo utilizado pelos botões de entrar na tela e no appbar. Apenas pra não repetir código.
         private void Entrar()
         {
@@ -43,8 +39,9 @@ namespace SACIS
                 MessageBox.Show("Favor entrar com o nome de usuário e senha");
             else
             {
-                string hash = geraHash(senha);
-                WService.consultaUsuarioAsync(usuario, senha);
+                string hash=Hash.hashing(senha);
+                MessageBox.Show(hash);
+                WService.consultaUsuarioAsync(usuario, hash);
                 WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
             }
         }
@@ -104,7 +101,7 @@ namespace SACIS
         //não permitir a entrada e dar a mensagem de erro correspondente.
         private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
         {
-            string status = e.Result.ToString();
+            string status = e.Result.ToString;
             if (status == "0")
                 NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
             else if (status == "1")
@@ -120,6 +117,12 @@ namespace SACIS
             {
                 MessageBox.Show("Acesso negado. Entrar em contato com o administrador.");
             }
+            /*
+            else if (status > "100" || status < "130")
+            {
+                string expira="Atenção! Sua chave irá expirar em " + status + ". Entre em contato com o administrador para enviar suas novas chaves." ;
+                MessageBox.Show(expira);
+            } */
             else
             {
                 MessageBox.Show("Erro desconhecido ou nada aconteceu"); //Apenas para debug, mudar a mensagem depois

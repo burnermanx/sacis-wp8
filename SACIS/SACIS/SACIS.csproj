@@ -96,12 +96,13 @@
     <Compile Include="ArmzArquivos.xaml.cs">
       <DependentUpon>ArmzArquivos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CryptoConfig.cs" />
-    <Compile Include="Classes\ICryptoTransform.cs.cs" />
-    <Compile Include="Classes\HashAlgorithm.cs" />
-    <Compile Include="Classes\SHA512.cs" />
-    <Compile Include="Classes\SHA512Managed.cs" />
-    <Compile Include="hash.cs" />
+    <Compile Include="Mono\Security\Cryptography\SHAConstants.cs" />
+    <Compile Include="Mono\Security\Cryptography\CryptoConfig.cs" />
+    <Compile Include="Mono\Security\Cryptography\ICryptoTransform.cs" />
+    <Compile Include="Mono\Security\Cryptography\HashAlgorithm.cs" />
+    <Compile Include="Mono\Security\Cryptography\SHA512.cs" />
+    <Compile Include="Mono\Security\Cryptography\SHA512Managed.cs" />
+    <Compile Include="Classes\Hash.cs" />
     <Compile Include="Contatos.xaml.cs">
       <DependentUpon>Contatos.xaml</DependentUpon>
     </Compile>

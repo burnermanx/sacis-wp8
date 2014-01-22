@@ -41,8 +41,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
+using System;
 
-using Mono.Xml;
 
 namespace Mono.Security.Cryptography
 {
@@ -50,18 +50,25 @@ namespace Mono.Security.Cryptography
     [ComVisible(true)]
     public partial class CryptoConfig
     {
-
+        // Atributos para o funcionamento da classe Consts, sem precisar trazer a classe Consts inteira.
+        public const string FxVersion = "4.0.0.0";
+        public const string AssemblySystem = "System, Version=" + FxVersion + ", Culture=neutral, PublicKeyToken=b77a5c561934e089";
+        public const string AssemblySystem_Security = "System.Security, Version=" + FxVersion + ", Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+       
         static private object lockObject;
         static private Dictionary<string, Type> algorithms;
         static private Dictionary<string, string> unresolved_algorithms;
         static private Dictionary<string, string> oids;
 
-        private const string defaultNamespace = "System.Security.Cryptography.";
+        private const string defaultNamespace = "Mono.Security.Cryptography.";
+        /*
         static Type defaultSHA1 = typeof(SHA1CryptoServiceProvider);
         static Type defaultMD5 = typeof(MD5CryptoServiceProvider);
         static Type defaultSHA256 = typeof(SHA256Managed);
-        static Type defaultSHA384 = typeof(SHA384Managed);
+        static Type defaultSHA384 = typeof(SHA384Managed); 
+        */
         static Type defaultSHA512 = typeof(SHA512Managed);
+        /*
         static Type defaultRSA = typeof(RSACryptoServiceProvider);
         static Type defaultDSA = typeof(DSACryptoServiceProvider);
         static Type defaultDES = typeof(DESCryptoServiceProvider);
@@ -81,24 +88,25 @@ namespace Mono.Security.Cryptography
         static Type defaultHMACSHA256 = typeof(HMACSHA256);
         static Type defaultHMACSHA384 = typeof(HMACSHA384);
         static Type defaultHMACSHA512 = typeof(HMACSHA512);
+        */
 
         // LAMESPEC: undocumented names in CryptoConfig
-        private const string defaultC14N = defaultNamespace + "Xml.XmlDsigC14NTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultC14NWithComments = defaultNamespace + "Xml.XmlDsigC14NWithCommentsTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultBase64 = defaultNamespace + "Xml.XmlDsigBase64Transform, " + Consts.AssemblySystem_Security;
-        private const string defaultXPath = defaultNamespace + "Xml.XmlDsigXPathTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultXslt = defaultNamespace + "Xml.XmlDsigXsltTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultEnveloped = defaultNamespace + "Xml.XmlDsigEnvelopedSignatureTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultXmlDecryption = defaultNamespace + "Xml.XmlDecryptionTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultExcC14N = defaultNamespace + "Xml.XmlDsigExcC14NTransform, " + Consts.AssemblySystem_Security;
-        private const string defaultExcC14NWithComments = defaultNamespace + "Xml.XmlDsigExcC14NWithCommentsTransform, " + Consts.AssemblySystem_Security;
+        private const string defaultC14N = defaultNamespace + "Xml.XmlDsigC14NTransform, " + AssemblySystem_Security;
+        private const string defaultC14NWithComments = defaultNamespace + "Xml.XmlDsigC14NWithCommentsTransform, " + AssemblySystem_Security;
+        private const string defaultBase64 = defaultNamespace + "Xml.XmlDsigBase64Transform, " + AssemblySystem_Security;
+        private const string defaultXPath = defaultNamespace + "Xml.XmlDsigXPathTransform, " + AssemblySystem_Security;
+        private const string defaultXslt = defaultNamespace + "Xml.XmlDsigXsltTransform, " + AssemblySystem_Security;
+        private const string defaultEnveloped = defaultNamespace + "Xml.XmlDsigEnvelopedSignatureTransform, " + AssemblySystem_Security;
+        private const string defaultXmlDecryption = defaultNamespace + "Xml.XmlDecryptionTransform, " + AssemblySystem_Security;
+        private const string defaultExcC14N = defaultNamespace + "Xml.XmlDsigExcC14NTransform, " + AssemblySystem_Security;
+        private const string defaultExcC14NWithComments = defaultNamespace + "Xml.XmlDsigExcC14NWithCommentsTransform, " + AssemblySystem_Security;
 
         // LAMESPEC: only documentated in ".NET Framework Security" book
-        private const string defaultX509Data = defaultNamespace + "Xml.KeyInfoX509Data, " + Consts.AssemblySystem_Security;
-        private const string defaultKeyName = defaultNamespace + "Xml.KeyInfoName, " + Consts.AssemblySystem_Security;
-        private const string defaultKeyValueDSA = defaultNamespace + "Xml.DSAKeyValue, " + Consts.AssemblySystem_Security;
-        private const string defaultKeyValueRSA = defaultNamespace + "Xml.RSAKeyValue, " + Consts.AssemblySystem_Security;
-        private const string defaultRetrievalMethod = defaultNamespace + "Xml.KeyInfoRetrievalMethod, " + Consts.AssemblySystem_Security;
+        private const string defaultX509Data = defaultNamespace + "Xml.KeyInfoX509Data, " + AssemblySystem_Security;
+        private const string defaultKeyName = defaultNamespace + "Xml.KeyInfoName, " + AssemblySystem_Security;
+        private const string defaultKeyValueDSA = defaultNamespace + "Xml.DSAKeyValue, " + AssemblySystem_Security;
+        private const string defaultKeyValueRSA = defaultNamespace + "Xml.RSAKeyValue, " + AssemblySystem_Security;
+        private const string defaultRetrievalMethod = defaultNamespace + "Xml.KeyInfoRetrievalMethod, " + AssemblySystem_Security;
 
         private const string managedSHA1 = defaultNamespace + "SHA1Managed";
 
@@ -216,14 +224,14 @@ namespace Mono.Security.Cryptography
         private const string oidX509BasicConstraints = "2.5.29.19";
         private const string oidX509EnhancedKeyUsage = "2.5.29.37";
 
-        private const string nameX509SubjectKeyIdentifier = defaultNamespace + "X509Certificates.X509SubjectKeyIdentifierExtension, " + Consts.AssemblySystem;
-        private const string nameX509KeyUsage = defaultNamespace + "X509Certificates.X509KeyUsageExtension, " + Consts.AssemblySystem;
-        private const string nameX509BasicConstraints = defaultNamespace + "X509Certificates.X509BasicConstraintsExtension, " + Consts.AssemblySystem;
-        private const string nameX509EnhancedKeyUsage = defaultNamespace + "X509Certificates.X509EnhancedKeyUsageExtension, " + Consts.AssemblySystem;
+        private const string nameX509SubjectKeyIdentifier = defaultNamespace + "X509Certificates.X509SubjectKeyIdentifierExtension, " + AssemblySystem;
+        private const string nameX509KeyUsage = defaultNamespace + "X509Certificates.X509KeyUsageExtension, " + AssemblySystem;
+        private const string nameX509BasicConstraints = defaultNamespace + "X509Certificates.X509BasicConstraintsExtension, " + AssemblySystem;
+        private const string nameX509EnhancedKeyUsage = defaultNamespace + "X509Certificates.X509EnhancedKeyUsageExtension, " + AssemblySystem;
 
         // new (2.0) X509 Chain
         private const string nameX509Chain = "X509Chain";
-        private const string defaultX509Chain = defaultNamespace + "X509Certificates.X509Chain, " + Consts.AssemblySystem;
+        private const string defaultX509Chain = defaultNamespace + "X509Certificates.X509Chain, " + AssemblySystem;
 #if NET_4_0
 	// AES
 	const string system_core_assembly = ", System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
@@ -288,6 +296,8 @@ namespace Mono.Security.Cryptography
             Dictionary<string, Type> algorithms = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
             // see list @ http://msdn.microsoft.com/library/en-us/cpref/html/
             // frlrfSystemSecurityCryptographyCryptoConfigClassTopic.asp
+            
+            /*
             algorithms.Add(nameSHA1a, defaultSHA1);
             algorithms.Add(nameSHA1b, defaultSHA1);
             algorithms.Add(nameSHA1c, defaultSHA1);
@@ -303,11 +313,13 @@ namespace Mono.Security.Cryptography
             algorithms.Add(nameSHA384a, defaultSHA384);
             algorithms.Add(nameSHA384b, defaultSHA384);
             algorithms.Add(nameSHA384c, defaultSHA384);
+            */
 
             algorithms.Add(nameSHA512a, defaultSHA512);
             algorithms.Add(nameSHA512b, defaultSHA512);
             algorithms.Add(nameSHA512c, defaultSHA512);
 
+            /*
             algorithms.Add(nameRSAa, defaultRSA);
             algorithms.Add(nameRSAb, defaultRSA);
             algorithms.Add(nameRSAc, defaultRSA);
@@ -354,6 +366,7 @@ namespace Mono.Security.Cryptography
             algorithms.Add(nameHMACSHA384b, defaultHMACSHA384);
             algorithms.Add(nameHMACSHA512a, defaultHMACSHA512);
             algorithms.Add(nameHMACSHA512b, defaultHMACSHA512);
+            */
 
             // we do not want to load the types (and assemblies) unless we really need them
             // so we keep those names as strings
@@ -362,9 +375,9 @@ namespace Mono.Security.Cryptography
             // LAMESPEC These URLs aren't documented but (hint) installing the WSDK
             // add some of the XMLDSIG urls into machine.config (and they make a LOT
             // of sense for implementing XMLDSIG in System.Security.Cryptography.Xml)
-            algorithms.Add(urlDSASHA1, defaultDSASigDesc);
-            algorithms.Add(urlRSASHA1, defaultRSASigDesc);
-            algorithms.Add(urlSHA1, defaultSHA1);
+            //algorithms.Add(urlDSASHA1, defaultDSASigDesc);
+            //algorithms.Add(urlRSASHA1, defaultRSASigDesc);
+            //algorithms.Add(urlSHA1, defaultSHA1);
             unresolved_algorithms.Add(urlC14N, defaultC14N);
             unresolved_algorithms.Add(urlC14NWithComments, defaultC14NWithComments);
             unresolved_algorithms.Add(urlBase64, defaultBase64);
@@ -374,13 +387,13 @@ namespace Mono.Security.Cryptography
             unresolved_algorithms.Add(urlExcC14N, defaultExcC14N);
             unresolved_algorithms.Add(urlExcC14NWithComments, defaultExcC14NWithComments);
             unresolved_algorithms.Add(urlXmlDecryption, defaultXmlDecryption);
-            algorithms.Add(urlSHA256, defaultSHA256);
+            //algorithms.Add(urlSHA256, defaultSHA256);
             // xmlenc does not include a definition for SHA384
-            algorithms.Add(urlSHA512, defaultSHA512);
-            algorithms.Add(urlHMACSHA256, defaultHMACSHA256);
-            algorithms.Add(urlHMACSHA384, defaultHMACSHA384);
-            algorithms.Add(urlHMACSHA512, defaultHMACSHA512);
-            algorithms.Add(urlHMACRIPEMD160, defaultHMACRIPEMD160);
+            //algorithms.Add(urlSHA512, defaultSHA512);
+            //algorithms.Add(urlHMACSHA256, defaultHMACSHA256);
+            //algorithms.Add(urlHMACSHA384, defaultHMACSHA384);
+            //algorithms.Add(urlHMACSHA512, defaultHMACSHA512);
+            //algorithms.Add(urlHMACRIPEMD160, defaultHMACRIPEMD160);
             // LAMESPEC: only documentated in ".NET Framework Security" book
             unresolved_algorithms.Add(urlX509Data, defaultX509Data);
             unresolved_algorithms.Add(urlKeyName, defaultKeyName);
@@ -455,8 +468,8 @@ namespace Mono.Security.Cryptography
             oid.Add(nameRC2a, oidRC2);
 
             // Add/modify the config as specified by machine.config
-            string config = Environment.GetMachineConfigPath();
-            LoadConfig(config, algorithms, oid);
+            //string config = Environment.GetMachineConfigPath();
+            //LoadConfig(config, algorithms, oid);
 
             // update
             CryptoConfig.algorithms = algorithms;
@@ -464,7 +477,7 @@ namespace Mono.Security.Cryptography
             CryptoConfig.oids = oid;
         }
 
-        [FileIOPermission(SecurityAction.Assert, Unrestricted = true)]
+      //  [FileIOPermission(SecurityAction.Assert, Unrestricted = true)]
         private static void LoadConfig(string filename, IDictionary<string, Type> algorithms, IDictionary<string, string> oid)
         {
             if (!File.Exists(filename))
@@ -474,9 +487,9 @@ namespace Mono.Security.Cryptography
             {
                 using (TextReader reader = new StreamReader(filename))
                 {
-                    CryptoHandler handler = new CryptoHandler(algorithms, oid);
-                    SmallXmlParser parser = new SmallXmlParser();
-                    parser.Parse(reader, handler);
+                    //CryptoHandler handler = new CryptoHandler(algorithms, oid);
+                    //SmallXmlParser parser = new SmallXmlParser();
+                    //parser.Parse(reader, handler);
                 }
             }
             catch
@@ -489,7 +502,7 @@ namespace Mono.Security.Cryptography
             return CreateFromName(name, null);
         }
 
-        [PermissionSet(SecurityAction.LinkDemand, Unrestricted = true)]
+        //[PermissionSet(SecurityAction.LinkDemand, Unrestricted = true)]
         public static object CreateFromName(string name, params object[] args)
         {
             if (name == null)
@@ -578,7 +591,7 @@ namespace Mono.Security.Cryptography
 	}
 #endif
 
-        class CryptoHandler : SmallXmlParser.IContentHandler
+       /* class CryptoHandler : SmallXmlParser.IContentHandler
         {
 
             IDictionary<string, Type> algorithms;
@@ -713,7 +726,7 @@ namespace Mono.Security.Cryptography
             {
                 // don't care
             }
-        }
+        } */
     }
 }
 

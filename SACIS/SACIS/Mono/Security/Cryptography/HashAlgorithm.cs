@@ -29,6 +29,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -88,7 +89,7 @@ namespace Mono.Security.Cryptography
             if (offset > buffer.Length - count)
             {
                 throw new ArgumentException("offset + count",
-                    Locale.GetText("Overflow"));
+                    "Overflow");
             }
 
             HashCore(buffer, offset, count);
@@ -121,7 +122,7 @@ namespace Mono.Security.Cryptography
 #if FULL_AOT_RUNTIME
 			return new System.Security.Cryptography.SHA1CryptoServiceProvider ();
 #else
-            return Create("System.Security.Cryptography.HashAlgorithm");
+            return Create("Mono.Security.Cryptography.HashAlgorithm");
 #endif
         }
 
@@ -136,8 +137,8 @@ namespace Mono.Security.Cryptography
             {
                 if (HashValue == null)
                 {
-                    throw new CryptographicUnexpectedOperationException(
-                        Locale.GetText("No hash value computed."));
+                    //throw new CryptographicUnexpectedOperationException(
+                    //    "No hash value computed.");
                 }
                 return HashValue;
             }
@@ -205,7 +206,7 @@ namespace Mono.Security.Cryptography
                 if (outputOffset > outputBuffer.Length - inputCount)
                 {
                     throw new ArgumentException("outputOffset + inputCount",
-                        Locale.GetText("Overflow"));
+                        "Overflow");
                 }
             }
 
@@ -227,7 +228,7 @@ namespace Mono.Security.Cryptography
             if (inputOffset > inputBuffer.Length - inputCount)
             {
                 throw new ArgumentException("inputOffset + inputCount",
-                    Locale.GetText("Overflow"));
+                    "Overflow");
             }
 
             byte[] outputBuffer = new byte[inputCount];

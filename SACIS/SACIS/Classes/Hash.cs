@@ -11,10 +11,11 @@ using System.Linq;
 using System.Text;
 using Mono.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography;
 
-namespace SACIS
+namespace SACIS.Classes
 {
-    public class hash
+    public class Hash
     {
         ///<summary>
         ///
