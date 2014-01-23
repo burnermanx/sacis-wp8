@@ -32,7 +32,6 @@ namespace SACIS
         //Metodo utilizado pelos botões de entrar na tela e no appbar. Apenas pra não repetir código.
         private void Entrar()
         {
-            SacisService.Service1SoapClient WService = new SacisService.Service1SoapClient();
             string usuario = Login.Text;
             string senha = Password.Password;
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
@@ -40,9 +39,17 @@ namespace SACIS
             else
             {
                 string hash=Hash.hashing(senha);
-                MessageBox.Show(hash);
-                WService.consultaUsuarioAsync(usuario, hash);
-                WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
+                //MessageBox.Show(hash);
+                try
+                {
+                    SacisService.Service1SoapClient WService = new SacisService.Service1SoapClient();
+                    WService.consultaUsuarioAsync(usuario, hash);
+                    WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Falha de comunicação com o servidor do SACIS.");
+                }
             }
         }
 
@@ -101,7 +108,7 @@ namespace SACIS
         //não permitir a entrada e dar a mensagem de erro correspondente.
         private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
         {
-            string status = e.Result.ToString;
+            string status = e.Result.ToString();
             if (status == "0")
                 NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
             else if (status == "1")
