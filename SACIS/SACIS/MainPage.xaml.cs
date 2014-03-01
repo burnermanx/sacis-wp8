@@ -40,16 +40,19 @@ namespace SACIS
             {
                 string hash=Hash.hashing(senha);
                 //MessageBox.Show(hash);
+                
+                SacisService.Service1SoapClient WService = new SacisService.Service1SoapClient();
+               
                 try
                 {
-                    SacisService.Service1SoapClient WService = new SacisService.Service1SoapClient();
                     WService.consultaUsuarioAsync(usuario, hash);
-                    WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
+                    WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted); 
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Falha de comunicação com o servidor do SACIS.");
                 }
+                
             }
         }
 
@@ -108,33 +111,45 @@ namespace SACIS
         //não permitir a entrada e dar a mensagem de erro correspondente.
         private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
         {
-            string status = e.Result.ToString();
-            if (status == "0")
-                NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
-            else if (status == "1")
+            string mensagem="";
+            try
             {
-                MessageBox.Show("Você precisa alterar a senha para continuar");
-                NavigationService.Navigate(new Uri("/AlteraSenha.xaml", UriKind.Relative));
+                int status = Convert.ToInt32(e.Result.ToString());
+       
+                switch (status)
+                {
+                    case 0:
+                        NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
+                        break;
+                    case 1:
+                        mensagem = "Você precisa alterar a senha para continuar";
+                        MessageBox.Show(mensagem);
+                        NavigationService.Navigate(new Uri("/AlteraSenha.xaml", UriKind.Relative));
+                        break;
+                    case 2:
+                        mensagem = "Chave expirada. Favor renovar a chave";
+                        MessageBox.Show(mensagem);
+                        break;
+                    case 3:
+                        mensagem = "Usuário ou senha incorretos.";
+                        MessageBox.Show(mensagem);
+                        break;
+                    default:
+                        if (status > 100 && status < 130)
+                        {
+                            mensagem = "Atenção! Sua chave irá expirar em " + status + " dias. Entre em contato com o administrador para enviar suas novas chaves.";
+                            MessageBox.Show(mensagem);
+                            break;
+                        }
+                        mensagem = "Erro desconhecido. Status código "+status;
+                        MessageBox.Show(mensagem);
+                        break;
+                }
             }
-            else if (status == "2")
+            catch (Exception)
             {
-                MessageBox.Show("Chave expirada. Favor renovar a chave");
+                MessageBox.Show("Falha de comunicação com o servidor do SACIS. ");
             }
-            else if (status == "3")
-            {
-                MessageBox.Show("Acesso negado. Entrar em contato com o administrador.");
-            }
-            /*
-            else if (status > "100" || status < "130")
-            {
-                string expira="Atenção! Sua chave irá expirar em " + status + ". Entre em contato com o administrador para enviar suas novas chaves." ;
-                MessageBox.Show(expira);
-            } */
-            else
-            {
-                MessageBox.Show("Erro desconhecido ou nada aconteceu"); //Apenas para debug, mudar a mensagem depois
-            }
-
         }
     }
 }

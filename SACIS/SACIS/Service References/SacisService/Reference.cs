@@ -3991,8 +3991,16 @@ namespace SACIS.SacisService {
             
             public SACIS.SacisService.consultaUsuarioResponse EndconsultaUsuario(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                SACIS.SacisService.consultaUsuarioResponse _result = ((SACIS.SacisService.consultaUsuarioResponse)(base.EndInvoke("consultaUsuario", _args, result)));
-                return _result;
+                try
+                {
+                    SACIS.SacisService.consultaUsuarioResponse _result = ((SACIS.SacisService.consultaUsuarioResponse)(base.EndInvoke("consultaUsuario", _args, result)));
+                    return _result;
+                }
+                catch
+                {
+                    
+                }
+                return null;
             }
             
             public System.IAsyncResult BeginalteraSenha(SACIS.SacisService.alteraSenhaRequest request, System.AsyncCallback callback, object asyncState) {
