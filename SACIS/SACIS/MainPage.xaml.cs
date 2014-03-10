@@ -63,7 +63,7 @@ namespace SACIS
 
         private void AppBar_Entrar(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AlteraSenha.xaml", UriKind.Relative));
         }
 
         private void Menu_Sobre(object sender, EventArgs e)
@@ -115,16 +115,15 @@ namespace SACIS
             try
             {
                 int status = Convert.ToInt32(e.Result.ToString());
-       
                 switch (status)
                 {
                     case 0:
-                        NavigationService.Navigate(new Uri("/Principal.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/Principal.xaml?user="+Login.Text, UriKind.Relative));
                         break;
                     case 1:
                         mensagem = "Você precisa alterar a senha para continuar";
                         MessageBox.Show(mensagem);
-                        NavigationService.Navigate(new Uri("/AlteraSenha.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/AlteraSenha.xaml?user="+Login.Text, UriKind.Relative));
                         break;
                     case 2:
                         mensagem = "Chave expirada. Favor renovar a chave";
@@ -141,8 +140,11 @@ namespace SACIS
                             MessageBox.Show(mensagem);
                             break;
                         }
-                        mensagem = "Erro desconhecido. Status código "+status;
-                        MessageBox.Show(mensagem);
+                        else
+                        {
+                            mensagem = "Erro desconhecido. Status código " + status;
+                            MessageBox.Show(mensagem);
+                        }
                         break;
                 }
             }

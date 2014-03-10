@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="SACIS.Page3"
+    x:Class="SACIS.AlteraSenha"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -22,14 +22,22 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="SACIS" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="alterar senha" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <Grid Margin="0,140,0,320">
+                <TextBox x:Name="PasswordWatermark" TextWrapping="Wrap" Text="Senha" Foreground="{StaticResource PhoneTextBoxReadOnlyBrush}" IsHitTestVisible="False"/>
+                <PasswordBox x:Name="Password" LostFocus="PasswordLostFocus" Opacity="0" GotFocus="PasswordGotFocus" PasswordChanged="PasswordChanged" Password="{Binding Password, Mode=TwoWay}"/>
+            </Grid>
+            <Grid Margin="0,240,0,223">
+                <TextBox x:Name="ConfirmPasswordWatermark" TextWrapping="Wrap" Text="Confirmar Senha" Foreground="{StaticResource PhoneTextBoxReadOnlyBrush}" IsHitTestVisible="False"/>
+                <PasswordBox x:Name="ConfirmPassword" LostFocus="ConfirmPasswordLostFocus" Opacity="0" GotFocus="ConfirmPasswordGotFocus" PasswordChanged="CheckPasswordChanged" Password="{Binding Password, Mode=TwoWay}"/>
+            </Grid>
         </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="29,331,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="140" Width="427" x:Name="Mensagem"/>
     </Grid>
-
+   <!-- Application Bar adicionada direto no .cs -->
 </phone:PhoneApplicationPage>

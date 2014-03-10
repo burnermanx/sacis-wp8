@@ -1210,6 +1210,7 @@
     <Compile Include="BouncyCastle\src\x509\X509V2AttributeCertificateGenerator.cs" />
     <Compile Include="BouncyCastle\src\x509\X509V2CRLGenerator.cs" />
     <Compile Include="BouncyCastle\src\x509\X509V3CertificateGenerator.cs" />
+    <Compile Include="Classes\PasswordChecker.cs" />
     <Compile Include="Mono\Security\Cryptography\SHAConstants.cs" />
     <Compile Include="Mono\Security\Cryptography\CryptoConfig.cs" />
     <Compile Include="Mono\Security\Cryptography\ICryptoTransform.cs" />
