@@ -59,6 +59,12 @@ namespace SACIS
         }
 
         //Implementacao das AppBars no Pivot
+        private void ab_Atualizar(object sender, EventArgs e)
+        {
+            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Contatos.xaml", UriKind.Relative));
+            //Do work for your application here.
+        }
+
         private void ab_Contatos(object sender, EventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Contatos.xaml", UriKind.Relative));
@@ -81,6 +87,11 @@ namespace SACIS
         {
             MessageBox.Show("Menu item 2 works!");
             //Do work for your application here.
+        }
+        private void AlterarSenha_Click(object sender, EventArgs e)
+        {
+            PivotPage1 pivot = new PivotPage1();
+            pivot.AlterarSenha_Nav();
         }
 
          

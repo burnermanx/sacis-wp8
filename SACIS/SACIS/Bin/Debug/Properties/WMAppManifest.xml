@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
+  <Languages xmlns="">
+    <Language code="pt-BR" />
+  </Languages>
   <App xmlns="" ProductID="{9005227b-f592-4030-bf62-5b328ef227af}" Title="SACIS" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="SACIS author" Description="Sample description" Publisher="SACIS" PublisherID="{291d136d-9526-45f2-a09f-d887003ad1d2}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>

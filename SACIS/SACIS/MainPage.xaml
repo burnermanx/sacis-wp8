@@ -41,7 +41,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="SACIS" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"  Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
             <TextBlock Text="login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
@@ -56,7 +56,8 @@
                 <PasswordBox x:Name="Password" LostFocus="PasswordLostFocus" Opacity="0" GotFocus="PasswordGotFocus" Password="{Binding Password, Mode=TwoWay}"/>
             </Grid>
             <Button Content="Entrar" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Click="Botao_Entrar" Width="436"/>
-            
+            <Button Content="Pregui" HorizontalAlignment="Left" Margin="10,382,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
 
         </Grid>
 

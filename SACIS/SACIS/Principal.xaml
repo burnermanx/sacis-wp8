@@ -16,15 +16,26 @@
         <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="SACIS" Loaded="Pivot_Loaded" SelectionChanged="Pivot_SelectionChanged">
+        <phone:Pivot Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"  Loaded="Pivot_Loaded" SelectionChanged="Pivot_SelectionChanged" x:Name="Pivot">
             <!--Pivot item one-->
-            <phone:PivotItem Header="mensagens">
-
-
+            <phone:PivotItem Header="{Binding Path=LocalizedResources.PivotMensagens, Source={StaticResource LocalizedStrings}}" >
+                <Grid>
+                    <phone:LongListSelector Name="LLsMensagens">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding assunto}" FontSize="26"/>
+                                    <TextBlock Text="{Binding data}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                        
+                    </phone:LongListSelector>
+                </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="arquivos">
+            <phone:PivotItem Header="{Binding Path=LocalizedResources.PivotArquivos, Source={StaticResource LocalizedStrings}}" >
                 
             </phone:PivotItem>
         </phone:Pivot>

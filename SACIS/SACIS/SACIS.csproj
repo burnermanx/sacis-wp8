@@ -15,8 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>pt-BR</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SACIS_$(Configuration)_$(Platform).xap</XapFilename>
@@ -1210,6 +1209,8 @@
     <Compile Include="BouncyCastle\src\x509\X509V2AttributeCertificateGenerator.cs" />
     <Compile Include="BouncyCastle\src\x509\X509V2CRLGenerator.cs" />
     <Compile Include="BouncyCastle\src\x509\X509V3CertificateGenerator.cs" />
+    <Compile Include="Classes\Entidades\MensagemCabecalho.cs" />
+    <Compile Include="Classes\Serial.cs" />
     <Compile Include="Classes\PasswordChecker.cs" />
     <Compile Include="Mono\Security\Cryptography\SHAConstants.cs" />
     <Compile Include="Mono\Security\Cryptography\CryptoConfig.cs" />
@@ -1368,6 +1369,7 @@
     <None Include="Service References\SacisService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

@@ -134,4 +134,10 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
+  <data name="PivotArquivos" xml:space="preserve">
+    <value>arquivos</value>
+  </data>
+  <data name="PivotMensagens" xml:space="preserve">
+    <value>mensagens</value>
+  </data>
 </root>

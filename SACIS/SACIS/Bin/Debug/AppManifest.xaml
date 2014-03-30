@@ -2,5 +2,6 @@
   <Deployment.Parts>
     <AssemblyPart x:Name="SACIS" Source="SACIS.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart Source="pt-BR/SACIS.resources.dll" />
   </Deployment.Parts>
 </Deployment>

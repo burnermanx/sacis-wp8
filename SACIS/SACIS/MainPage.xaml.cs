@@ -30,7 +30,7 @@ namespace SACIS
         }
         
         //Metodo utilizado pelos botões de entrar na tela e no appbar. Apenas pra não repetir código.
-        private void Entrar()
+        private void Entrar(object sender, EventArgs e)
         {
             string usuario = Login.Text;
             string senha = Password.Password;
@@ -58,7 +58,7 @@ namespace SACIS
 
         private void Botao_Entrar(object sender, EventArgs e)
         {
-            Entrar();
+            Entrar(sender, e);
         }
 
         private void AppBar_Entrar(object sender, EventArgs e)
@@ -111,19 +111,22 @@ namespace SACIS
         //não permitir a entrada e dar a mensagem de erro correspondente.
         private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
         {
-            string mensagem="";
+            string mensagem = "";
+            string uri = "";
             try
             {
                 int status = Convert.ToInt32(e.Result.ToString());
                 switch (status)
                 {
                     case 0:
-                        NavigationService.Navigate(new Uri("/Principal.xaml?user="+Login.Text, UriKind.Relative));
+                        uri = "/Principal.xaml?user=" + Login.Text;
+                        NavigationService.Navigate(new Uri(uri, UriKind.Relative));
                         break;
                     case 1:
                         mensagem = "Você precisa alterar a senha para continuar";
                         MessageBox.Show(mensagem);
-                        NavigationService.Navigate(new Uri("/AlteraSenha.xaml?user="+Login.Text, UriKind.Relative));
+
+                        NavigationService.Navigate(new Uri("/AlteraSenha.xaml?user=" + Login.Text, UriKind.Relative));
                         break;
                     case 2:
                         mensagem = "Chave expirada. Favor renovar a chave";
@@ -153,5 +156,17 @@ namespace SACIS
                 MessageBox.Show("Falha de comunicação com o servidor do SACIS. ");
             }
         }
+        //Metodo pra não precisar preencher a senha o tempo todo
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Login.Text = "administrador";
+            Password.Password = "admin123";
+            Login.Opacity = 100;
+            Password.Opacity = 100;
+            LoginWatermark.Opacity = 0;
+            PasswordWatermark.Opacity = 0;
+        }
     }
+
+
 }

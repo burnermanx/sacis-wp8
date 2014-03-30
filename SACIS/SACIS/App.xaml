@@ -10,16 +10,19 @@
         <local:LocalizedStrings xmlns:local="clr-namespace:SACIS" x:Key="LocalizedStrings"/>
         
         <shell:ApplicationBar x:Key="MsgBar" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/refresh.png" Text="atualizar" Click="ab_Atualizar" />
             <shell:ApplicationBarIconButton IconUri="/Images/new.png" Text="nova" Click="ab_NovaMensagem" />
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.people.multiple.png" Text="contatos" Click="ab_Contatos" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Caixa de Entrada" Click="MenuItem1_Click" />
                 <shell:ApplicationBarMenuItem Text="Enviados" Click="MenuItem2_Click" />
+                <shell:ApplicationBarMenuItem Text="Alterar Senha" Click="AlterarSenha_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
 
-        <shell:ApplicationBar x:Key="StorBar" IsVisible="False" IsMenuEnabled="True">
+        <shell:ApplicationBar x:Key="StorBar" IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Alterar Senha" Click="AlterarSenha_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </Application.Resources>
