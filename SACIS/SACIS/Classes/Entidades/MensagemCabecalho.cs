@@ -11,7 +11,7 @@ using System.Text;
 
 namespace SACIS.Classes.Entidades
 {
-    public class MensagemCabecalho : IEquatable<MensagemCabecalho>
+    public class mensagemCabecalho : IEquatable<mensagemCabecalho>
     {
         private int _codigo;
         private DateTime _data;
@@ -26,14 +26,14 @@ namespace SACIS.Classes.Entidades
         /// Método contrutor para inicializar o objeto
         ///
         ///</summary>
-        public MensagemCabecalho() { }
+        public mensagemCabecalho() { }
 
         ///<summary>
         ///
         /// Método contrutor para inicializar o objeto atraves de parâmetros
         ///
         ///</summary>
-        public MensagemCabecalho(int codigo, DateTime data, string assunto, string tipo, bool lida, int tamanho, string logremdest)
+        public mensagemCabecalho(int codigo, DateTime data, string assunto, string tipo, bool lida, int tamanho, string logremdest)
         {
             _codigo = codigo;
             _data = data;
@@ -258,7 +258,7 @@ namespace SACIS.Classes.Entidades
         /// Método de sobrecarga para comparação de objetos
         ///
         ///</summary>
-        public bool Equals(MensagemCabecalho other)
+        public bool Equals(mensagemCabecalho other)
         {
             if (Object.ReferenceEquals(other, null)) return false;
 

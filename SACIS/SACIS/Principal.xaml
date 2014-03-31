@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,9 +24,14 @@
                     <phone:LongListSelector Name="LLsMensagens">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding assunto}" FontSize="26"/>
-                                    <TextBlock Text="{Binding data}" />
+                                <StackPanel Orientation="Horizontal" Tap="MensagemTap">
+                                    <StackPanel Orientation="Vertical" Width="300">
+                                        <TextBlock Text="{Binding logremdest}" FontSize="36" />
+                                        <TextBlock Text="{Binding assunto}" Foreground="{StaticResource PhoneAccentBrush}"/> 
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding data, StringFormat=g}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>

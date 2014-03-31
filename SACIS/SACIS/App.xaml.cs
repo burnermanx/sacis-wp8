@@ -18,6 +18,8 @@ namespace SACIS
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
+
+        
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -61,8 +63,11 @@ namespace SACIS
         //Implementacao das AppBars no Pivot
         private void ab_Atualizar(object sender, EventArgs e)
         {
-            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Contatos.xaml", UriKind.Relative));
-            //Do work for your application here.
+            PivotPage1 pivot = new PivotPage1();
+            if (pivot.get_caixaEntrada())
+                pivot.listaMensagens("ENTRADA");
+            else
+                pivot.listaMensagens("ENVIADOS");
         }
 
         private void ab_Contatos(object sender, EventArgs e)
@@ -77,16 +82,16 @@ namespace SACIS
             //Do work for your application here.
         }
 
-        private void MenuItem1_Click(object sender, EventArgs e)
+        private void MenuCaixaEntrada_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Menu item 1 works!");
-            //Do work for your application here.
+            PivotPage1 pivot = new PivotPage1();
+            pivot.listaMensagens("ENTRADA");
         }
 
-        private void MenuItem2_Click(object sender, EventArgs e)
+        private void MenuEnviados_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Menu item 2 works!");
-            //Do work for your application here.
+            PivotPage1 pivot = new PivotPage1();
+            pivot.listaMensagens("ENVIADOS");
         }
         private void AlterarSenha_Click(object sender, EventArgs e)
         {
