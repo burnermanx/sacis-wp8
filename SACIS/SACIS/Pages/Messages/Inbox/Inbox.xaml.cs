@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using SACIS.Classes.Entidades;
 using SACIS.Classes;
 using SACIS.Helpers;
+using System.ComponentModel;
 
 namespace SACIS.Pages
 {
@@ -21,19 +22,36 @@ namespace SACIS.Pages
         //Criando a lista de mensagens
         List<mensagemCabecalho> mensagens = new List<mensagemCabecalho>();
         App app = App.Current as App;
-        
-        
+
+              
         public Inbox()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(listaMensagens);
+            this.Loaded += new RoutedEventHandler(Inbox_Loaded);
         }
 
-        public void listaMensagens(object sender, EventArgs e)
+        public void Inbox_Loaded(object sender, EventArgs e)
+        {
+            SystemTray.ProgressIndicator = new ProgressIndicator();
+            //nav.setUsername(app.User);
+            listaMensagens();
+        }
+
+        public void showSystemTray(Boolean isSet)
+        {
+            SystemTray.Opacity = 0;
+            SystemTray.IsVisible = isSet;
+            SystemTray.ProgressIndicator.IsIndeterminate = isSet;
+            SystemTray.ProgressIndicator.IsVisible = isSet;
+        }
+
+        public void listaMensagens()
         {
             string user = app.User;
             WService.retornaCabecalhoAsync(user, "ENTRADA");
             WService.retornaCabecalhoCompleted += new EventHandler<SacisService.retornaCabecalhoCompletedEventArgs>(listaMensagensCompleted);
+            showSystemTray(true);
+            
         }
 
         //Metodo para lidar com o resultado do Async de cabeçalhos
@@ -41,6 +59,7 @@ namespace SACIS.Pages
         {
             string xml = e.Result;
             //MessageBox.Show(xml);
+            showSystemTray(false);
             if (!string.IsNullOrEmpty(xml))
             {
                 mensagens = Serial.Deserializar(xml, typeof(List<mensagemCabecalho>)) as List<mensagemCabecalho>;
@@ -52,7 +71,7 @@ namespace SACIS.Pages
         //Implementacao das AppBars no Pivot
         private void ab_Atualizar(object sender, EventArgs e)
         {
-            listaMensagens(sender, e);
+            listaMensagens();
         }
 
         private void ab_Contatos(object sender, EventArgs e)
@@ -75,6 +94,19 @@ namespace SACIS.Pages
             MessageBox.Show("OK!");
         }
 
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            if (MessageBox.Show("Você deseja mesmo sair?", "Sair do SACIS?",
+                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+                
+            }
+            else
+            {
+                throw new Exception(); //Jogando Exception de propósito para fechar o app
+            }
+        }
      
     }
 }

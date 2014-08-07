@@ -17,7 +17,6 @@ namespace SACIS.Pages
         public Navigation()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(ChangeUsername);
         }
 
         private void User_OnTap(object sender, RoutedEventArgs e)
@@ -45,11 +44,11 @@ namespace SACIS.Pages
             NavigationHelper.Instance.Navigate("/Pages/Config/Config.xaml");
         }
 
-        private void ChangeUsername(object sender, RoutedEventArgs e)
+        public void setUsername(String user)
         {
             if (app.isAuthenticated)
             {
-                username.Text = app.User;
+                username.Text = user;
             }
         }
 

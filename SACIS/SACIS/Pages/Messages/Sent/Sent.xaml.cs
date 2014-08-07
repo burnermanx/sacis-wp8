@@ -25,19 +25,35 @@ namespace SACIS.Pages
         public Sent()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(listaMensagens);
+            this.Loaded += new RoutedEventHandler(Sent_Loaded);
         }
 
-        public void listaMensagens(object sender, EventArgs e)
+        public void Sent_Loaded(object sender, EventArgs e)
+        {
+            SystemTray.ProgressIndicator = new ProgressIndicator();
+            listaMensagens();
+        }
+
+        public void showSystemTray(Boolean isSet)
+        {
+            SystemTray.Opacity = 0;
+            SystemTray.IsVisible = isSet;
+            SystemTray.ProgressIndicator.IsIndeterminate = isSet;
+            SystemTray.ProgressIndicator.IsVisible = isSet;
+        }
+
+        public void listaMensagens()
         {
             string user = app.User;
             WService.retornaCabecalhoAsync(user, "ENVIADOS");
+            showSystemTray(true);
             WService.retornaCabecalhoCompleted += new EventHandler<SacisService.retornaCabecalhoCompletedEventArgs>(listaMensagensCompleted);
         }
 
         //Metodo para lidar com o resultado do Async de cabeçalhos
         private void listaMensagensCompleted(object obj, SacisService.retornaCabecalhoCompletedEventArgs e)
         {
+            showSystemTray(false);
             string xml = e.Result;
             //MessageBox.Show(xml);
             if (!string.IsNullOrEmpty(xml))
@@ -51,7 +67,7 @@ namespace SACIS.Pages
         //Implementacao das AppBars no Pivot
         private void ab_Atualizar(object sender, EventArgs e)
         {
-            listaMensagens(sender, e);
+            listaMensagens();
         }
 
         private void ab_Contatos(object sender, EventArgs e)

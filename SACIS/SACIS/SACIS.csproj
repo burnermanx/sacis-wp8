@@ -139,6 +139,9 @@
     <Compile Include="Pages\User\ChangePassword\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\User\KeyManager\KeyManager.xaml.cs">
+      <DependentUpon>KeyManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\User.xaml.cs">
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Messages\MessageView\MessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\KeyManager\KeyManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

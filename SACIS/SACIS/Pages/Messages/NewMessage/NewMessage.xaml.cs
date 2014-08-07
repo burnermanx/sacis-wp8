@@ -16,5 +16,11 @@ namespace SACIS.Pages
         {
             InitializeComponent();
         }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Mensagem Enviada");
+            NavigationService.GoBack();
+        }
     }
 }

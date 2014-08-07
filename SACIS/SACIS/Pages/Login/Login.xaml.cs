@@ -11,6 +11,7 @@ using SACIS.Resources;
 using SACIS.SacisService;
 using SACIS.Classes;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace SACIS.Pages
 {
@@ -24,9 +25,15 @@ namespace SACIS.Pages
             InitializeComponent();
             ThemeManager.ToLightTheme();
             ThemeManager.SetAccentColor(Colors.Red);
+            this.Loaded += new RoutedEventHandler(Login_Loaded);
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        public void Login_Loaded(object sender, EventArgs e)
+        {
+            SystemTray.ProgressIndicator = new ProgressIndicator();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -52,6 +59,7 @@ namespace SACIS.Pages
                 {
                     WService.consultaUsuarioAsync(usuario, hash);
                     WService.consultaUsuarioCompleted += new EventHandler<consultaUsuarioCompletedEventArgs>(consultaUsuarioCompleted);
+                    showSystemTray(true);
                 }
                 catch (Exception)
                 {
@@ -61,6 +69,14 @@ namespace SACIS.Pages
             }
         }
 
+        public void showSystemTray(Boolean isSet)
+        {
+            SystemTray.Opacity = 0;
+            SystemTray.IsVisible = isSet;
+            SystemTray.ProgressIndicator.IsIndeterminate = isSet;
+            SystemTray.ProgressIndicator.IsVisible = isSet;
+        }
+
         private void Botao_Entrar(object sender, EventArgs e)
         {
             Entrar(sender, e);
@@ -68,12 +84,12 @@ namespace SACIS.Pages
 
         private void AppBar_Entrar(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/User/ChangePassword/ChangePassword.xaml", UriKind.Relative));
+            Entrar(sender, e);
         }
 
         private void Menu_Sobre(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/About/About.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Config/About/About.xaml", UriKind.Relative));
         }
 
         private void LoginLostFocus(object sender, RoutedEventArgs e)
@@ -117,6 +133,7 @@ namespace SACIS.Pages
         private void consultaUsuarioCompleted(object obj, SacisService.consultaUsuarioCompletedEventArgs e)
         {
             string mensagem = "";
+            showSystemTray(false);
             try
             {
                 int status = Convert.ToInt32(e.Result.ToString());
@@ -169,6 +186,20 @@ namespace SACIS.Pages
             PasswordInput.Opacity = 100;
             LoginWatermark.Opacity = 0;
             PasswordWatermark.Opacity = 0;
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            if (MessageBox.Show("Você deseja mesmo sair?", "Sair do SACIS?",
+                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+
+            }
+            else
+            {
+                throw new Exception(); //Jogando Exception de propósito para fechar o app
+            }
         }
     }
 

@@ -33,7 +33,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/send.message.png" Text="enviar"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/send.message.png" Text="enviar" Click="ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Images/attach.png" Text="anexar"/>
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.people.multiple.png" Text="contatos"/>
             <shell:ApplicationBarIconButton IconUri="/Images/close.png" Text="fechar"/>

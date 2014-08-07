@@ -25,13 +25,15 @@
                                 <StackPanel Orientation="Horizontal" Tap="MensagemTap">
                                     <StackPanel Orientation="Vertical" Width="300">
                                         <TextBlock Text="{Binding logremdest}" Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <TextBlock Text="{Binding assunto}" Foreground="{StaticResource PhoneAccentBrush}"/> 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding data, StringFormat=g}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
-                                    </StackPanel>
+                                        <TextBlock Text="{Binding assunto}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                                    
                                 </StackPanel>
-                            </DataTemplate> 
+                                    <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding data, StringFormat=g}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            </StackPanel>
+                                </StackPanel>
+                        
+                    </DataTemplate> 
                         </phone:LongListSelector.ItemTemplate> 
 
             </phone:LongListSelector>

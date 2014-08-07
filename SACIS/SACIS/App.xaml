@@ -10,7 +10,7 @@
     <!--Application Resources-->
 
     <Application.RootVisual>
-        <library:SlideApplicationFrame Header="SACIS" Foreground="Red" Background="White">
+        <library:SlideApplicationFrame Header="SACIS" Foreground="White" Background="White" >
             <library:SlideApplicationFrame.LeftContent>
                 <pages:Navigation />
             </library:SlideApplicationFrame.LeftContent>
