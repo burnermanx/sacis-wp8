@@ -7,6 +7,9 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SACIS.Resources;
+using SACIS.Helpers;
+using SlideView.Library;
+
 
 namespace SACIS
 {
@@ -16,7 +19,7 @@ namespace SACIS
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
-        public static PhoneApplicationFrame RootFrame { get; private set; }
+        public static SlideApplicationFrame RootFrame { get; private set; }
 
 
         
@@ -34,10 +37,10 @@ namespace SACIS
             InitializeComponent();
 
             // Phone-specific initialization
-            InitializePhoneApplication();
+            //InitializePhoneApplication();
 
             // Language display initialization
-            InitializeLanguage();
+            //InitializeLanguage();
 
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
@@ -58,6 +61,22 @@ namespace SACIS
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }            
+        }
+
+        //Sabendo se o usuário está autenticado ou não
+        private bool authenticaded = false;
+        internal bool isAuthenticated
+        {
+            get { return authenticaded; }
+            set { authenticaded = value; }
+        }
+
+        //Guardando o nome do usuário para uso posterior
+        private string user;
+        internal string User
+        {
+            get { return user; }
+            set { user = value; }
         }
 
         //Implementacao das AppBars no Pivot
@@ -105,6 +124,8 @@ namespace SACIS
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            RootFrame = RootVisual as SlideApplicationFrame;
+            NavigationHelper.Instance.Initialize(RootVisual as PhoneApplicationFrame);
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -125,15 +146,6 @@ namespace SACIS
         {
         }
 
-        // Code to execute if a navigation fails
-        private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            if (Debugger.IsAttached)
-            {
-                // A navigation has failed; break into the debugger
-                Debugger.Break();
-            }
-        }
 
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -150,37 +162,36 @@ namespace SACIS
         // Avoid double-initialization
         private bool phoneApplicationInitialized = false;
 
-        // Do not add any additional code to this method
-        private void InitializePhoneApplication()
-        {
-            if (phoneApplicationInitialized)
-                return;
+        /* // Do not add any additional code to this method
+         private void InitializePhoneApplication()
+         {
+             if (phoneApplicationInitialized)
+                 return;
 
-            // Create the frame but don't set it as RootVisual yet; this allows the splash
-            // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
-            RootFrame.Navigated += CompleteInitializePhoneApplication;
+             // Create the frame but don't set it as RootVisual yet; this allows the splash
+             // screen to remain active until the application is ready to render.
+             RootFrame = new SlideApplicationFrame();
+             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
-            // Handle navigation failures
-            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 
-            // Handle reset requests for clearing the backstack
-            RootFrame.Navigated += CheckForResetNavigation;
 
-            // Ensure we don't initialize again
-            phoneApplicationInitialized = true;
-        }
+             // Handle reset requests for clearing the backstack
+             RootFrame.Navigated += CheckForResetNavigation;
 
-        // Do not add any additional code to this method
-        private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)
-        {
-            // Set the root visual to allow the application to render
-            if (RootVisual != RootFrame)
-                RootVisual = RootFrame;
+             // Ensure we don't initialize again
+             phoneApplicationInitialized = true;
+         } 
 
-            // Remove this handler since it is no longer needed
-            RootFrame.Navigated -= CompleteInitializePhoneApplication;
-        }
+         // Do not add any additional code to this method
+         private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)
+         {
+             // Set the root visual to allow the application to render
+             if (RootVisual != RootFrame)
+                 RootVisual = RootFrame;
+
+             // Remove this handler since it is no longer needed
+             RootFrame.Navigated -= CompleteInitializePhoneApplication;
+         } */
 
         private void CheckForResetNavigation(object sender, NavigationEventArgs e)
         {
@@ -225,6 +236,7 @@ namespace SACIS
         //
         // For more info on localizing Windows Phone apps see http://go.microsoft.com/fwlink/?LinkId=262072.
         //
+        /*
         private void InitializeLanguage()
         {
             try
@@ -262,6 +274,6 @@ namespace SACIS
 
                 throw;
             }
-        }
+        } */
     }
 }

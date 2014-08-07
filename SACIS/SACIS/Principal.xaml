@@ -13,38 +13,41 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
-  
-        <!--LayoutRoot is the root grid where all page content is placed-->
+
+
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"  Loaded="Pivot_Loaded" SelectionChanged="Pivot_SelectionChanged" x:Name="Pivot">
+         <phone:Pivot Title="SACIS"  Loaded="Pivot_Loaded" SelectionChanged="Pivot_SelectionChanged" x:Name="Pivot">
             <!--Pivot item one-->
-            <phone:PivotItem Header="{Binding Path=LocalizedResources.PivotMensagens, Source={StaticResource LocalizedStrings}}" >
+            <phone:PivotItem Header="TESTE" >
                 <Grid>
                     <phone:LongListSelector Name="LLsMensagens">
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
+                        <!-- <phone:LongListSelector.ItemTemplate>
+                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Tap="MensagemTap">
                                     <StackPanel Orientation="Vertical" Width="300">
-                                        <TextBlock Text="{Binding logremdest}" FontSize="36" />
+                                        <TextBlock Text="{Binding logremdest}" Style="{StaticResource PhoneTextLargeStyle}" />
                                         <TextBlock Text="{Binding assunto}" Foreground="{StaticResource PhoneAccentBrush}"/> 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding data, StringFormat=g}"  HorizontalAlignment="Right" VerticalAlignment="Center" />
                                     </StackPanel>
                                 </StackPanel>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
+                            </DataTemplate> 
+                        </phone:LongListSelector.ItemTemplate> -->
                         
                     </phone:LongListSelector>
                 </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="{Binding Path=LocalizedResources.PivotArquivos, Source={StaticResource LocalizedStrings}}" >
+            <phone:PivotItem Header="teste" >
                 
             </phone:PivotItem>
         </phone:Pivot>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

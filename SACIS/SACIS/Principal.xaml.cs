@@ -109,9 +109,24 @@ namespace SACIS
             }
         }
 
-        private void MensagemTap(object sender, GestureEventArgs e)
+        private void MensagemTap(object sender)
         {
             MessageBox.Show("OK!");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bool ativado = false;
+            if (ativado)
+            {
+                listaMensagens("ENTRADA");
+                ativado = true;
+            }
+            else
+            {  
+                listaMensagens("ENVIADOS");
+                ativado = false;
+            }
         }
 
     }
