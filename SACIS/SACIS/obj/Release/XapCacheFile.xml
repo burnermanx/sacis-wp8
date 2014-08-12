@@ -1,6 +1,6 @@
-﻿<xapCache source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\Bin\Release\SACIS_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="07/08/2014 13:45:39">
-  <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\obj\Release\SACIS.dll" archivePath="SACIS.dll" lastWriteTime="07/08/2014 13:45:38" />
-  <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\obj\Release\pt-BR\SACIS.resources.dll" archivePath="pt-BR\SACIS.resources.dll" lastWriteTime="07/08/2014 13:45:38" />
+﻿<xapCache source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\Bin\Release\SACIS_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="11/08/2014 23:31:56">
+  <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\obj\Release\SACIS.dll" archivePath="SACIS.dll" lastWriteTime="11/08/2014 23:31:55" />
+  <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\obj\Release\pt-BR\SACIS.resources.dll" archivePath="pt-BR\SACIS.resources.dll" lastWriteTime="11/08/2014 23:31:55" />
   <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\packages\WPtoolkit.4.2013.08.16\lib\wp8\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll" archivePath="pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll" lastWriteTime="03/07/2014 18:18:26" />
   <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="03/07/2014 18:18:26" />
   <file source="G:\Users\Burner\Documents\GitHub\sacis-wp8\SACIS\SACIS\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="03/07/2014 18:18:26" />

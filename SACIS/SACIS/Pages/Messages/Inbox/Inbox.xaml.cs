@@ -104,7 +104,8 @@ namespace SACIS.Pages
             }
             else
             {
-                throw new Exception(); //Jogando Exception de propósito para fechar o app
+                app.logoff(); //Fazendo o Logoff
+                NavigationHelper.Instance.Navigate("/Pages/Main/MainPage.xaml");
             }
         }
      

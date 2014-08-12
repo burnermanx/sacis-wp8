@@ -32,6 +32,9 @@ namespace SACIS.Pages
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            var rootframe = App.RootFrame;
+            rootframe.IsSlideEnabled = true;
+            rootframe.RightContent = null;
             if (!app.isAuthenticated)
             {
                 //MessageBox.Show(" Não Autenticado");

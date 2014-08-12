@@ -34,6 +34,8 @@ namespace SACIS.Pages
         public void Login_Loaded(object sender, EventArgs e)
         {
             SystemTray.ProgressIndicator = new ProgressIndicator();
+            var rootframe = App.RootFrame;
+            rootframe.IsSlideEnabled = false;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -188,17 +190,11 @@ namespace SACIS.Pages
             PasswordWatermark.Opacity = 0;
         }
 
-        protected override void OnBackKeyPress(CancelEventArgs e)
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Você deseja mesmo sair?", "Sair do SACIS?",
-                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            while (NavigationService.CanGoBack)
             {
-                e.Cancel = true;
-
-            }
-            else
-            {
-                throw new Exception(); //Jogando Exception de propósito para fechar o app
+                NavigationService.RemoveBackEntry();
             }
         }
     }

@@ -45,16 +45,16 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid Margin="0,140,0,320">
+            <Grid Margin="0,120,0,320">
                 <TextBox x:Name="LoginWatermark" TextWrapping="Wrap" Text="Login" Foreground="{StaticResource PhoneTextBoxReadOnlyBrush}" IsHitTestVisible="False"/>
                 <TextBox x:Name="LoginInput" LostFocus="LoginLostFocus" Opacity="0" GotFocus="LoginGotFocus" Text=""/>
             </Grid>
-            <Grid Margin="0,240,0,223">
+            <Grid Margin="0,220,0,223">
                 <TextBox x:Name="PasswordWatermark" TextWrapping="Wrap" Text="Senha" Foreground="{StaticResource PhoneTextBoxReadOnlyBrush}" IsHitTestVisible="False"/>
                 <PasswordBox x:Name="PasswordInput" LostFocus="PasswordLostFocus" Opacity="0" GotFocus="PasswordGotFocus" Password="{Binding Password, Mode=TwoWay}"/>
             </Grid>
             <Button Content="Entrar" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Click="Botao_Entrar" Width="436"/>
-            <Button Content="Pregui" HorizontalAlignment="Left" Margin="10,382,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            <!-- <Button Content="Pregui" HorizontalAlignment="Left" Margin="10,382,0,0" VerticalAlignment="Top" Click="Button_Click"/> -->
 
 
         </Grid>
